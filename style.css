@@ -127,6 +127,21 @@ input{
     vertical-align: middle;
     display: inline-block;
 }
+.dc-popular-posts > a > h4 {
+	-webkit-transition: color 0.5s ease-in-out;
+	-moz-transition: color 0.5s ease-in-out;
+	-o-transition: color 0.5s ease-in-out;
+	transition: color 0.5s ease-in-out;
+}
+
+.dc-popular-posts > a > h4:hover {
+	color: #ffff00;
+}
+
+	.dark-color .dc-popular-posts > a > h4:hover {
+		color: #009688;
+	}
+
 .dc_popular_posts_widget .thumbnail-only a h4 {
     font-size: 0.75rem;
     width: 95%;
@@ -136,7 +151,9 @@ input{
     margin:0;
     font-family: Open Sans,raleway, Helvetica, Arial,sans-serif;
     font-weight: 300;
+    line-height: 1;    
 }
+
 .dc_popular_posts_widget .thumbnail-only a {
     position: absolute;
     width: 100%;
@@ -153,7 +170,7 @@ input{
     text-align: center;
  }
  .dc_popular_posts_widget .thumbnail-only a:hover {
-    opacity: 1;
+     opacity: 1;
  }
 .dc_popular_posts_widget .compact-list li{
     margin-bottom: 15px;
