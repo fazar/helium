@@ -52,6 +52,7 @@
 				'include-modules' => array(
 					'page_options',
 					'post_format',
+					'slider',
 					'visual_composer',
 				),
 				'include-parts' => array(
