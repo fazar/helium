@@ -23,7 +23,7 @@
 						'type' => 'video'
 					),
 					array(
-						'id' => 'ogg',
+						'id' => 'ogv',
 						'title' => 'Ogg File',
 						'subtitle' => 'Upload your ogg file here',
 						'type' => 'video'
@@ -40,6 +40,31 @@
 						'title' => 'Subtitle',
 						'subtitle' => 'Enter your subtitle here',
 						'type' => 'textarea'
+					),
+
+					array(
+						'id' => 'button_1',
+						'title' => 'Button Text 1',
+						'subtitle' => 'Add the button here',
+						'type' => 'text'
+					),
+					array(
+						'id' => 'button_link_1',
+						'title' => 'Button Link 1',
+						'subtitle' => 'Add the button here',
+						'type' => 'text'
+					),
+					array(
+						'id' => 'button_2',
+						'title' => 'Button Text 2',
+						'subtitle' => 'Add the button here',
+						'type' => 'text'
+					),
+					array(
+						'id' => 'button_link_2',
+						'title' => 'Button Link 2',
+						'subtitle' => 'Add the button here',
+						'type' => 'text'
 					)
 				)
 			);
@@ -67,7 +92,7 @@
 						'default' => 'light',
 						'options' => array(
 							'light' => 'Light',
-							'right' => 'Right'
+							'dark' => 'Dark'
 						)
 					)
 				)
@@ -79,13 +104,13 @@
 				'post_type' => 'dc_slider',
 				'fields' => array(
 					array(
-						'id' => 'title_style',
+						'id' => 'style',
 						'type' => 'custom',
 						'title' => 'Style',
 						'callback' => 'caption_style'
 					),
 					array(
-						'id' => 'title_animation',
+						'id' => 'animation',
 						'type' => 'custom',
 						'title' => 'Animation',
 						'callback' => 'caption_animation'
@@ -98,13 +123,13 @@
 				'post_type' => 'dc_slider',
 				'fields' => array(
 					array(
-						'id' => 'title_style',
+						'id' => 'style',
 						'type' => 'custom',
 						'title' => 'Style',
 						'callback' => 'caption_style'
 					),
 					array(
-						'id' => 'title_animation',
+						'id' => 'animation',
 						'type' => 'custom',
 						'title' => 'Animation',
 						'callback' => 'caption_animation'
@@ -117,13 +142,13 @@
 				'post_type' => 'dc_slider',
 				'fields' => array(
 					array(
-						'id' => 'title_style',
+						'id' => 'style',
 						'type' => 'custom',
 						'title' => 'Style',
 						'callback' => 'caption_style'
 					),
 					array(
-						'id' => 'title_animation',
+						'id' => 'animation',
 						'type' => 'custom',
 						'title' => 'Animation',
 						'callback' => 'caption_animation'
@@ -133,31 +158,30 @@
 		}
 
 		function caption_style( $meta_box_id, $meta_value, $field ){
-			$default_value = empty($field['default']) ? '' : $field['default'] ;
+			$default_value = empty($field['default']) ? 'regular' : $field['default'] ;
 			$field_value = empty($meta_value) || empty($meta_value[$field['id']]) ? $default_value : $meta_value[$field['id']] ;
 			?>
 				<tr>
 					<td>
 						<label><?php echo esc_html__( $field['title'], THEMENAME ) ?></label>
 						<select  name="<?php echo $meta_box_id.'['.$field['id'] .']'; ?>" id="<?php echo $field['id'] ?>">
-							<option value="regular" <?php selected($field_value, 'regular', true)  ?>>Regular</option>
-							<option value="border" <?php selected($field_value, 'border', true)  ?>>Border</option>
-							<option value="background" <?php selected($field_value, 'background', true)  ?>>Background</option>
+							<option value="regular" <?php selected($field_value, 'regular', true)  ?>><?php _e('Regular', THEMENAME) ?></option>
+							<option value="border" <?php selected($field_value, 'border', true)  ?>><?php _e('Border', THEMENAME) ?></option>
+							<option value="background" <?php selected($field_value, 'background', true)  ?>><?php _e('Background', THEMENAME) ?></option>
 						</select>
 					
 			<?php
 		}
 
 		function caption_animation( $meta_box_id, $meta_value, $field ){
-			$default_value = empty($field['default']) ? '' : $field['default'] ;
+			$default_value = empty($field['default']) ? 'move-up' : $field['default'] ;
 			$field_value = empty($meta_value) || empty($meta_value[$field['id']]) ? $default_value : $meta_value[$field['id']] ;
 			?>
 					<td>
 						<label><?php echo esc_html__( $field['title'], THEMENAME ) ?></label>
 						<select  name="<?php echo $meta_box_id.'['.$field['id'] .']'; ?>" id="<?php echo $field['id'] ?>">
-							<option value="regular" <?php selected($field_value, 'regular', true)  ?>>Regular</option>
-							<option value="border" <?php selected($field_value, 'border', true)  ?>>Border</option>
-							<option value="background" <?php selected($field_value, 'background', true)  ?>>Background</option>
+							<option value="move-up" <?php selected($field_value, 'move-up', true) ?>><?php _e('Move Up', THEMENAME) ?></option>
+							<option value="fade-in" <?php selected($field_value, 'fade-in', true) ?>><?php _e('Fade In', THEMENAME) ?></option>
 						</select>
 					</td>
 				</tr>

@@ -2,7 +2,39 @@
   $(document).foundation();
   
   $(document).ready(function(){
-   
+      $('.fullscreen').height($(window).height());
+      $('.fullscreen').width($(window).width());
+      if (typeof $.fn.videofit != 'undefined'){
+         $('.videofit').videofit({
+          container : '.dc-slider'
+         });
+      }
+      if (typeof $.fn.dcslider != 'undefined'){
+         $('.dc-slider').dcslider({
+                effect : 'crossfading',
+                pauseOnHover : true,
+                afterChange : function($active, $moveTo){
+                  if ( $moveTo.hasClass('light') ){
+                    var $slider = $moveTo.closest('.dc-slider');
+                    if($slider.hasClass('dark-scheme')){
+                      $slider.removeClass('dark-scheme');
+                    }
+                    $slider.addClass('light-scheme');
+                  }else{
+                    var $slider = $moveTo.closest('.dc-slider');
+                    if($slider.hasClass('light-scheme')){
+                      $slider.removeClass('light-scheme');
+                    }
+                    $slider.addClass('dark-scheme');
+                  }
+                  var nextIndex = $moveTo.index() + 1;
+                  var $slider = $moveTo.closest('.dc-slider');
+                  $slider.find('.slide-index').each(function(){
+                    $(this).html(nextIndex);
+                  });
+                }
+            });
+      }
     if(Modernizr.mq('(min-width: 40.063em)')){
         /* UBER MENU */  
         var liHeight = 0
