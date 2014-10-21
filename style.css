@@ -242,16 +242,29 @@ input{
     font-size: 0.75rem;
     margin-bottom: 0;
 }
-	.dark-color .dc-recent-comments p,
-	.dc-recent-comments p{
+	.dark-color .dc-recent-comments p,	
 		color:#bdbdbd;
 	}
- .dc_recent_comments_widget li a{
- 	color:#bdbdbd;
+
+ .dc_recent_comments_widget li a {
+ 	color:#bdbdbd; 	
  }
- .dc_recent_comments_widget li a:hover p{
-   color:#0097a7;
- }
+
+.dc_recent_comments_widget li a p {
+ 	-webkit-transition: color 0.5s ease-in-out;
+    -o-transition: color 0.5s ease-in-out;
+    -moz-transition: color 0.5s ease-in-out;
+    transition: color 0.5s ease-in-out;
+}
+ 
+.dc_recent_comments_widget li a:hover p{
+	color:#fff000;
+}
+
+	.dark-color .dc_recent_comments_widget li a:hover p{
+		color:#009688;
+	}
+
 .dc-recent-comments .comment-author {
     position: absolute;
     top:3px;
@@ -440,13 +453,15 @@ input{
 	
 }
 
-/* lists without thumbnail */
-.dc_recent_posts_widget ul li.dc-recent-posts-list {
+/* lists without thumbnail and wordpress recent posts */
+.dc_recent_posts_widget ul li.dc-recent-posts-list,
+.widget_recent_entries ul li 
+ {
 	list-style-type: none;
 	width: 100%;
 	background: #424242;
 	margin-bottom: 15px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	padding: 0px;
 	-webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	-moz-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
@@ -454,12 +469,14 @@ input{
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
-	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list {
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list,
+	.dark-color .widget_recent_entries ul li  {
 		background: #bdbdbd;
 	}
 
 
-.dc_recent_posts_widget ul li.dc-recent-posts-list a {
+.dc_recent_posts_widget ul li.dc-recent-posts-list a,
+.widget_recent_entries ul li a {
 	/*padding: 10px 0px 10px 5px;*/
 	display: inline-block;
 	color: #ffffff;
@@ -470,37 +487,45 @@ input{
 	line-height: 1;
 }
 
-	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list a {
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list a,
+	.dark-color .widget_recent_entries ul li a {
 		color: #212121;
 	}
 
-.dc_recent_posts_widget ul li.dc-recent-posts-list:hover {
+.dc_recent_posts_widget ul li.dc-recent-posts-list:hover,
+.widget_recent_entries ul li:hover {
 	background: #fff000;
 	color: #212121;	
 }
 
-	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list:hover {
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list:hover,
+	.dark-color .widget_recent_entries ul li:hover {
 		background: #009688;
 		color: #ffffff;	
 	}
 
-.dc_recent_posts_widget ul li.dc-recent-posts-list:hover a {
+.dc_recent_posts_widget ul li.dc-recent-posts-list:hover a,
+.widget_recent_entries ul li:hover a {
 	color: #212121;	
 }
 
-	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list:hover a {
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list:hover a,
+	.dark-color .widget_recent_entries ul li:hover a {
 		color: #ffffff;	
 	}
 
-.dc_recent_posts_widget ul li.dc-recent-posts-list:hover span.post-date {
+.dc_recent_posts_widget ul li.dc-recent-posts-list:hover span.post-date,
+.widget_recent_entries ul li:hover span.post-date {
 	color: #757575;	
 }
 
-	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list:hover span.post-date {
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list:hover span.post-date,
+	.dark-color .widget_recent_entries ul li:hover span.post-date {
 		color: #bdbdbd;	
 	}
 
-.dc_recent_posts_widget ul li.dc-recent-posts-list span.post-date {
+.dc_recent_posts_widget ul li.dc-recent-posts-list span.post-date,
+.widget_recent_entries ul li span.post-date {
 	display: block;		
 	color: #bdbdbd;
 	margin-top: 5px;
@@ -511,7 +536,32 @@ input{
 		color: #757575;		
 	}
 
-/* End dc Recent Posts */
+.widget_recent_entries ul li span.post-date {
+	padding-left: 5px;
+	margin-top: 0px;
+	padding-bottom: 9px;
+}
+
+.dark-color .widget_recent_entries ul li span.post-date {
+	color: #757575;
+}
+
+.dc-recent-posts-thumbnail .post_thumbnail > .no-image{
+    width: 70px;
+	height: 70px;
+	position: absolute;
+	left: 0;
+	top: 1px;
+ }
+
+ .dc-recent-posts-thumbnail .post_thumbnail > .no-image{
+    line-height: 70px;
+    text-align: center;
+    color:#fff;
+    background-color:#bdbdbd;
+    font-size: 3rem;
+ }
+/* End DC Recent Posts */
  
 /* Calendar */
 #wp-calendar{
@@ -609,9 +659,12 @@ input{
 }
 
 #wp-calendar > tfoot > tr > td > a {
-	color: #212121;
-
+	color: #b2dfdb;
 }
+
+	.dark-color #wp-calendar > tfoot > tr > td > a {
+		color: #212121;
+	}
 
 #wp-calendar > tfoot > tr > td > a:hover {
 	color: #ffff00;
@@ -731,21 +784,80 @@ table tfoot tr td {
 		background:#e0e0e0;
 		color:#212121;
 	}
+
 .widget.widget_categories > ul > li > a > span,
 .widget.widget_archive > ul > li > a > span,
 .widget.widget_pages > ul > li > a > span,
 .widget_categories > ul > li ul.children li a > span {
 	position: absolute;
 	right: 10px;
-	color: #212121;
+	color: #ffffff;
 }
+
+	.dark-color .widget.widget_categories > ul > li > a > span,
+	.dark-color .widget.widget_archive > ul > li > a > span,
+	.dark-color .widget.widget_pages > ul > li > a > span,
+	.dark-color .widget_categories > ul > li ul.children li a > span {	
+		color: #212121;
+	}
 
 .widget.widget_categories > ul > li > a:hover > span,
 .widget.widget_archive > ul > li > a:hover > span,
 .widget_categories > ul > li ul.children li a:hover > span {
-	color: #ffffff;
+	color: #212121;
 }
+
+	.dark-color .widget.widget_categories > ul > li > a:hover > span,
+	.dark-color .widget.widget_archive > ul > li > a:hover > span,
+	.dark-color .widget_categories > ul > li ul.children li a:hover > span {
+		color: #ffffff;
+	}
 /* End Categories */
+
+/* Start Meta */
+.widget_meta a {
+	color: #ffffff;
+	-webkit-transition: color 0.5s ease-in-out;
+	-moz-transition: color 0.5s ease-in-out;
+	-o-transition: color 0.5s ease-in-out;
+	transition: color 0.5s ease-in-out;
+}
+
+	.dark-color .widget_meta a {
+		color: #757575;		
+	}
+
+.widget_meta > ul > li > a:hover {
+	color: #ffff00;
+}
+
+	.dark-color .widget_meta > ul > li > a:hover {
+		color: #009688;
+	}
+
+/* End Meta */
+
+/* Start Widget Recent Comment */
+.widget_recent_comments .recentcomments a {
+	color: #ffffff;
+	-webkit-transition: color 0.5s ease-in-out;
+	-moz-transition: color 0.5s ease-in-out;
+	-o-transition: color 0.5s ease-in-out;
+	transition: color 0.5s ease-in-out;
+}
+
+	.dark-color .widget_recent_comments .recentcomments a {
+		color: #757575
+	}
+
+.widget_recent_comments .recentcomments a:hover {
+	color: #ffff00;
+}
+
+	.dark-color .widget_recent_comments .recentcomments a:hover {
+		color: #009688;
+	}
+
 
 /* Search */
  .widget_search .screen-reader-text{

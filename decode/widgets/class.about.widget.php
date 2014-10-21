@@ -30,8 +30,12 @@
 			echo $before_widget;
 			if ( $title  && $show_title) echo $before_title . $title . $after_title;
 			?>
-			<div id="dc-about-widget">
-				<?php $this->display_image( $image_options ); ?>
+			<div id="dc-about-widget">				
+				<?php
+				if($image_options['type'] != 'no-image') {
+					$this->display_image( $image_options ); 
+				}
+				?>
 				<h4><?php echo $about_title ?></h4>
 				<p><?php echo $about_description ?></p>
 				<ul class="about-social-media">
@@ -107,6 +111,7 @@
 				<option value="gravatar" <?php selected( $image_source, "gravatar" ); ?>><?php _e('Gravatar', THEMENAME) ?></option>
 				<option value="local-image" <?php selected( $image_source, "local-image" ); ?>><?php _e('Local Image', THEMENAME) ?></option>
 				<option value="embedded-image" <?php selected( $image_source, "embedded-image" ); ?>><?php _e('Embedded Image', THEMENAME) ?></option>
+				<option value="no-image" <?php selected( $image_source, "no-image" ); ?>><?php _e('Don\'t Display Image', THEMENAME) ?></option>
 			</select></p>
 
 			<p class="email-field"><label for="<?php echo $this->get_field_id( 'email' ); ?>"><?php _e( 'Email', THEMENAME ); ?></label>
@@ -196,6 +201,9 @@
 									form.find('.image-button').show();
 									form.find('.about-remove-image').show();
 									form.find('.email-field').hide();
+								}else if(val == 'no-image'){
+									form.find('.email-field').hide();
+									form.find('.image-selector').hide();
 								}else{
 									form.find('.email-field').hide();
 									form.find('.image-url').prop('readonly', false);
