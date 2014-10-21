@@ -72,7 +72,7 @@
 					<li class="dc-recent-posts-thumbnail">
 						<a href="<?php the_permalink(); ?>">					
 							<div class="post_thumbnail">
-								<?php the_post_thumbnail(); ?>
+								<?php echo get_the_post_thumbnail($post['ID'], array(70,70)); ?>
 							</div>					
 							<span class="post-title"><?php get_the_title() ? the_title() : the_ID(); ?></span>						
 							<?php if ( $show_date ) : ?>

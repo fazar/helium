@@ -127,6 +127,21 @@ input{
     vertical-align: middle;
     display: inline-block;
 }
+.dc-popular-posts > a > h4 {
+	-webkit-transition: color 0.5s ease-in-out;
+	-moz-transition: color 0.5s ease-in-out;
+	-o-transition: color 0.5s ease-in-out;
+	transition: color 0.5s ease-in-out;
+}
+
+.dc-popular-posts > a > h4:hover {
+	color: #ffff00;
+}
+
+	.dark-color .dc-popular-posts > a > h4:hover {
+		color: #009688;
+	}
+
 .dc_popular_posts_widget .thumbnail-only a h4 {
     font-size: 0.75rem;
     width: 95%;
@@ -136,7 +151,9 @@ input{
     margin:0;
     font-family: Open Sans,raleway, Helvetica, Arial,sans-serif;
     font-weight: 300;
+    line-height: 1;    
 }
+
 .dc_popular_posts_widget .thumbnail-only a {
     position: absolute;
     width: 100%;
@@ -153,7 +170,7 @@ input{
     text-align: center;
  }
  .dc_popular_posts_widget .thumbnail-only a:hover {
-    opacity: 1;
+     opacity: 1;
  }
 .dc_popular_posts_widget .compact-list li{
     margin-bottom: 15px;
@@ -364,6 +381,135 @@ input{
 }
 
 /* End dc Instagram */
+
+/* DC Recent Posts */
+
+.dc_recent_posts_widget .post_thumbnail > img {
+	position: absolute;
+	left: 0;	
+	top: 0;
+}
+
+.dc_recent_posts_widget > ul > li {
+	position: relative;
+	margin-bottom: 60px;
+	padding-left: 90px;
+}
+
+.dc_recent_posts_widget > ul > li > a > span {
+	width: 100%;
+	display: inline-block;	
+}
+
+.dc_recent_posts_widget > ul > li > a > span.post-title {
+	margin-bottom: 2px;
+	color: #ffffff;
+	-webkit-transition: color 0.5s ease-in-out;
+	-moz-transition: color 0.5s ease-in-out;
+	-o-transition: color 0.5s ease-in-out;
+	transition: color 0.5s ease-in-out;
+}
+
+	.dark-color .dc_recent_posts_widget > ul > li > a > span.post-title {
+		margin-bottom: 2px;
+		color: #757575;		
+	}
+
+.dc_recent_posts_widget > ul > li > a > span.post-title:hover {
+	color: #ffff00;
+}
+
+	.dark-color .dc_recent_posts_widget > ul > li > a > span.post-title:hover {
+		color: #009688;
+	}
+
+.dc_recent_posts_widget > ul > li > a > span.post-date {
+	color: #bdbdbd;
+}
+
+.dc_recent_posts_widget > ul > li > a {
+	height: 100%;
+	display: inline-block;
+	margin-top: -4px;
+}
+
+.dc_recent_posts_widget > ul > li > a ,
+.dc_recent_posts_widget > ul > li > span.post-date {
+	
+}
+
+/* lists without thumbnail */
+.dc_recent_posts_widget ul li.dc-recent-posts-list {
+	list-style-type: none;
+	width: 100%;
+	background: #424242;
+	margin-bottom: 15px;
+	font-size: 12px;
+	padding: 0px;
+	-webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	-moz-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	-o-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list {
+		background: #bdbdbd;
+	}
+
+
+.dc_recent_posts_widget ul li.dc-recent-posts-list a {
+	/*padding: 10px 0px 10px 5px;*/
+	display: inline-block;
+	color: #ffffff;
+	width: 100%;
+	display: block;
+	height: 100%;
+	padding: 9px 5px;
+	line-height: 1;
+}
+
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list a {
+		color: #212121;
+	}
+
+.dc_recent_posts_widget ul li.dc-recent-posts-list:hover {
+	background: #fff000;
+	color: #212121;	
+}
+
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list:hover {
+		background: #009688;
+		color: #ffffff;	
+	}
+
+.dc_recent_posts_widget ul li.dc-recent-posts-list:hover a {
+	color: #212121;	
+}
+
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list:hover a {
+		color: #ffffff;	
+	}
+
+.dc_recent_posts_widget ul li.dc-recent-posts-list:hover span.post-date {
+	color: #757575;	
+}
+
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list:hover span.post-date {
+		color: #bdbdbd;	
+	}
+
+.dc_recent_posts_widget ul li.dc-recent-posts-list span.post-date {
+	display: block;		
+	color: #bdbdbd;
+	margin-top: 5px;
+	font-size: 0.625rem;
+}
+
+	.dark-color .dc_recent_posts_widget ul li.dc-recent-posts-list span.post-date {
+		color: #757575;		
+	}
+
+/* End WAE Recent Posts */
  
 /* Calendar */
 #wp-calendar{
@@ -415,10 +561,10 @@ input{
 
 #wp-calendar > tbody > tr > td {
 	background: #757575;
-	-webkit-transition: background 0.5s ease-in-out;
-	-moz-transition: background 0.5s ease-in-out;
-	-o-transition: background 0.5s ease-in-out;
-	transition: background 0.5s ease-in-out;
+	-webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	-moz-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	-o-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	color: #fff;
 	font-size: 0.75rem;
 }
@@ -571,10 +717,10 @@ table tfoot tr td {
 	padding:9px 5px;
 	background: #424242;
 	line-height: 1;
-	-webkit-transition: background 0.5s ease-in-out;
-	-moz-transition: background 0.5s ease-in-out;
-	-o-transition: background 0.5s ease-in-out;
-	transition: background 0.5s ease-in-out;
+	-webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	-moz-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	-o-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 	.dark-color .widget.widget_categories > ul > li > a,
 	.dark-color .widget.widget_archive > ul > li > a,
