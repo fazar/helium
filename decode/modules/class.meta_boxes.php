@@ -66,7 +66,11 @@
 			<table class="form-table">
 				<?php 
 					foreach ($current_meta_box['fields'] as $key => $field) {
-						$this->render_field($meta_box['id'], $meta_value, $field );
+						if($field['type'] == 'custom'){
+							call_user_func(array($this, $field['callback']), $meta_box['id'], $meta_value, $field);
+						}else{
+							$this->render_field($meta_box['id'], $meta_value, $field );
+						}
 					} 
 				?>
 			</table>
@@ -78,9 +82,9 @@
 			$field_value = empty($meta_value) || empty($meta_value[$field['id']]) ? $default_value : $meta_value[$field['id']] ;
 			?>
 				<tr>
-					<th>
+					<td>
 						<label><?php echo esc_html__( $field['title'], THEMENAME ) ?></label>
-					</th>
+					</td>
 					<td>
 						<?php
 							 switch ($field['type']) {
