@@ -72,8 +72,16 @@
 					<li class="dc-recent-posts-thumbnail">
 						<a href="<?php the_permalink(); ?>">					
 							<div class="post_thumbnail">
-								<?php echo get_the_post_thumbnail($post['ID'], array(70,70)); ?>
+								<?php if( has_post_thumbnail() ){
+							 		echo get_the_post_thumbnail(get_the_ID(), array(70,70)); 
+							 	}else{
+							 		echo '<div class="no-image">';
+									echo '<span class="icon-pen"></span>';
+									echo '</div>';
+							 	}
+							 	?>
 							</div>					
+
 							<span class="post-title"><?php get_the_title() ? the_title() : the_ID(); ?></span>						
 							<?php if ( $show_date ) : ?>
 								<span class="post-date"><?php echo get_the_date(); ?></span>

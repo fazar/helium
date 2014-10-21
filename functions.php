@@ -18,9 +18,9 @@
 		function __construct(){
 			parent::__construct();
 			$this->add_images_size();
-			add_action( 'vc_before_init', array( $this, 'vc_as_theme' ) );
-			// add_filter('wp_list_categories', array( $this, 'cat_count_span' ));
-			// add_filter( 'get_archives_link', array( $this, 'archive_count_span' ) );
+			add_action( 'vc_before_init', array( $this, 'vc_as_theme' ) );			
+			add_filter( 'wp_list_categories', array( $this, 'cat_count_span' ));
+			add_filter( 'get_archives_link', array( $this, 'archive_count_span' ) );
 			$this->fire_bootstrapper();
 		}
 
@@ -88,17 +88,17 @@
 			new HL_public_resolves;
 		}
 
-		function cat_count_span($links) {
+		function cat_count_span($links) {			
 			$links = str_replace('</a> (', '<span>', $links);
 			$links = str_replace(')', '</span></a>', $links);
 			return $links;
 		}
 
-		function archive_count_span($links) {
-			$links = str_replace('(', "", $links);
-			$links = str_replace('</a>', '<span>', $links);
+		function archive_count_span($links) {			
+			//$links = str_replace('(', "", $links);
+			$links = str_replace('</a>&nbsp;(', '<span>', $links);
 			$links = str_replace(')', '</span></a>', $links);
-			$links = str_replace('&nbsp;', '', $links);
+			//$links = str_replace('&nbsp;', '', $links);
 			return $links;
 		}
 
