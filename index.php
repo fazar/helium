@@ -8,7 +8,17 @@
 */
 	get_header();
 	/* Start the Loop */
-	while ( have_posts() ) : the_post();
-		the_content();
-	endwhile;
-	get_footer();
+	?>
+	<div class="row main-content">		
+		<div class="large-12 medium-12 columns">
+		<?php
+			while ( have_posts() ) : the_post();
+				the_content();
+			endwhile;
+		?>
+		</div>
+	</div>
+	<?php  
+		get_footer();
+	?>
+	

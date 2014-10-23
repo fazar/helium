@@ -14,14 +14,55 @@
 
 html,body{
 	height: 100%;
-}
-:focus,
+}F:focus,
 input:focus,
 textarea:focus,
 textarea,
 input{
 	outline: none;
 }
+.main-content li, p {
+	font-family: Raleway;
+	font-weight: 400;
+	color: #757575;
+}
+
+blockquote p {
+	font-family: Open Sans;
+	font-weight: 400;
+	color: #212121;
+	font-size: 1.125rem;
+	font-style: italic;
+}
+
+.main-content li {
+	margin-left: 30px;
+	line-height: 1;
+	padding-bottom: 15px;
+}
+
+.main-content h1:not(:first-child),
+.main-content h2:not(:first-child),
+.main-content h3:not(:first-child),
+.main-content h4:not(:first-child),
+.main-content h5:not(:first-child),
+.main-content h6:not(:first-child) {
+	padding-top: 40px;	
+}
+
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+	margin-bottom: 30px;
+	line-height: 1;
+	padding:0px;
+	margin-top: 0;
+}
+
+
 .top-header-bg{
 	background-size: cover;
 	background-position: center center;
@@ -210,6 +251,10 @@ input{
     margin-bottom: 5px;
     color:#e0e0e0;
 }
+
+	.dark-color .dc_popular_posts_widget .compact-list .post-date{
+		color:#bdbdbd;		
+	}
 
 .dc_popular_posts_widget .compact-list .dc-popular-posts{
     min-height: 76px;
@@ -540,9 +585,9 @@ input{
 	padding-bottom: 9px;
 }
 
-.dark-color .widget_recent_entries ul li span.post-date {
-	color: #757575;
-}
+	.dark-color .widget_recent_entries ul li span.post-date {
+		color: #757575;
+	}
 
 .dc-recent-posts-thumbnail .post_thumbnail > .no-image{
     width: 70px;
@@ -965,7 +1010,34 @@ table tfoot tr td {
 .dark-color .widget{
 	color:#757575;
 }
+
 @media only screen and (min-width: 40.063em){
+	h1 {
+		font-size: 2.25rem;
+	}
+
+	h2 {
+		font-size: 1.875rem;
+	}
+
+	h3 {
+		font-size: 1.5rem;
+	}
+
+	h4 {
+		font-size: 1.125rem;
+	}
+
+	h5 {
+		font-size: 1.125rem;
+	}
+
+	h6 {
+		font-size: 0.875rem;
+	}
+
+
+
 	/*** top bar position ***/
 	.top-bar.center{
 		height: auto;
@@ -987,7 +1059,7 @@ table tfoot tr td {
 
 	/*** top bar styling ***/
 	.main-content{
-		padding-top: 40px;
+		padding-top: 50px;
 	}
 	.nav-container{
 		background-color: #212121;
@@ -1192,6 +1264,9 @@ table tfoot tr td {
 			background: #212121;	
 		}
 
+	.top-bar > ul.title-area.left > li.name {
+		padding-left: 15px;
+	}
 	/*** top bar scroll animation ***/
 	.sticky-nav {
 		position: fixed;
