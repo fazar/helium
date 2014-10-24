@@ -245,15 +245,63 @@ if (!class_exists('helium_admin_config')) {
                     'icon' => 'el-icon-cogs',
                     'fields' => array(
                         array(
+                            'id' => 'menu_pos',
+                            'type' => 'radio',
+                            'title' => 'Menu Position',
+                            'subtitle' => 'Choose your prefered menu position',
+                            'default' => '1',
+                            'options' => array(
+                                'top-menu' => 'Top Menu',
+                                'left-menu' => 'Left Menu',
+                                'right-menu' => 'Right Menu'
+                            )
+                        ),
+                        array(
                             'id' => 'nav_type',
                             'type' => 'radio',
                             'title' => 'Navigation Type',
                             'subtitle' => 'Choose your prefered navigation type',
                             'default' => '1',
+                            'required' => array('menu_pos', '=', 'top-menu'),
                             'options' => array(
-                                '1' => 'Left Menu',
-                                '2' => 'Right Menu',
-                                '3' => 'Centered Menu'
+                                'left-menu' => 'Left Menu',
+                                'right-menu' => 'Right Menu',
+                                'centered-menu' => 'Centered Menu'
+                            )
+                        ),                        
+                        array(
+                            'id' => 'use-nav-background',
+                            'type' => 'switch',
+                            'required'  => array('menu_pos', '!=', 'top-menu'), 
+                            'title' => __('Use Background for Navigation?', THEMENAME), 
+                            'subtitle' => __('Turn on/off navigation background.', THEMENAME),
+                            'defaut' => 0
+                        ),
+                        array(
+                            'id' => 'nav_background',
+                            'type' => 'media',
+                            'required'  => array('use-nav-background', '=', '1'), 
+                            'title' => __('Upload Navigation Background', THEMENAME), 
+                            'subtitle' => __('If you intend to background for your navigation, upload your background here', THEMENAME),
+                            'desc' => '' 
+                        ),
+                        array(
+                            'id' => 'nav_background_pos',
+                            'type' => 'select',
+                            'title' => 'Position for Navigation Background',
+                            'subtitle' => 'Choose your prefered navigation background position',
+                            'default' => 'top center',
+                            'required'  => array('use-nav-background', '=', '1'), 
+                            'options' => array(
+                                'top center' => 'Top Center',
+                                'top left' => 'Top Left',
+                                'top right' => 'Top Right',
+                                'center center' => 'Center Center',
+                                'center left' => 'Center Left',
+                                'center right' => 'Center Right',
+                                'bottom center' => 'Bottom Center',
+                                'bottom left' => 'Bottom Left',
+                                'bottom right' => 'Bottom Right',
                             )
                         ),
                         array(
