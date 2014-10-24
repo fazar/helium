@@ -94,9 +94,42 @@
 							'light' => 'Light',
 							'dark' => 'Dark'
 						)
+					),
+					array(
+						'id' => 'style_and_animation',
+						'type' => 'radio',
+						'title' => 'Style and Animation',
+						'default' => 'group',
+						'options' => array(
+							'group' => 'Group',
+							'per-element' => 'Per Element'
+						)
+					),
+					array(
+						'id' => 'caption_style',
+						'type' => 'radio',
+						'title' => 'Caption Style',
+						'default' => 'regular',
+						'options' => array(
+							'regular' => 'Regular',
+							'border' => 'Border',
+							'background' => 'Background'
+						)
+					),
+					array(
+						'id' => 'caption_animation',
+						'type' => 'radio',
+						'title' => 'Caption Animation',
+						'default' => 'move-up',
+						'options' => array(
+							'move-up' => 'Move Up',
+							'fade-in' => 'Fade In'
+						)
 					)
 				)
 			);
+
+
 
 			$this->meta_boxes[] = array(
 				'id' => 'dc_slider_title',

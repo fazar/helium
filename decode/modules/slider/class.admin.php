@@ -4,6 +4,7 @@
 			add_action( 'init', array( $this, 'register' ) );
 			add_filter( 'manage_edit-dc_slider_columns', array( $this, 'edit_columns' ) );
 			add_action( 'manage_posts_custom_column', array( $this, 'custom_columns' ) );
+			add_action( 'admin_footer', array($this, 'scripts') );
 
 		}
 
@@ -57,6 +58,39 @@
 	               	echo get_post_meta( $post->ID, '_dc_slider_caption_title', true );  
 	                break;  
 	        }  
-		}  
+		} 
+
+		function scripts(){
+			global $typenow;
+			if ( $typenow == 'dc_slider' ){
+				?>
+					<script type="text/javascript">
+						(function($){
+							$(document).ready(function(){
+								var styleBehaviour = $('input[name="dc_slider_options[style_and_animation]"]:checked').val();
+								if( $.trim(styleBehaviour) == 'group'){
+									$('#dc_slider_title.postbox, #dc_slider_subtitle.postbox, #dc_slider_buttons.postbox').hide();
+								}else{
+									$('input[name="dc_slider_options[caption_style]"]').closest('tr').hide();
+									$('input[name="dc_slider_options[caption_animation]"]').closest('tr').hide();
+								}
+							 	$('input[name="dc_slider_options[style_and_animation]"]').change(function(){
+								 	var behaviour = $(this).val();
+								 	if( behaviour == 'group'){
+ 										$('#dc_slider_title.postbox, #dc_slider_subtitle.postbox, #dc_slider_buttons.postbox').hide();
+ 										$('input[name="dc_slider_options[caption_style]"]').closest('tr').show();
+ 										$('input[name="dc_slider_options[caption_animation]"]').closest('tr').show();
+ 									}else{
+ 										$('input[name="dc_slider_options[caption_style]"]').closest('tr').hide();
+ 										$('input[name="dc_slider_options[caption_animation]"]').closest('tr').hide();
+ 										$('#dc_slider_title.postbox, #dc_slider_subtitle.postbox, #dc_slider_buttons.postbox').show();
+ 									}
+							 	});
+							});
+						}(jQuery));
+					</script>
+				<?php
+			}
+		} 
 	}
 ?>

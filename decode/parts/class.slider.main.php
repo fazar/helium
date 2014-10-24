@@ -17,9 +17,14 @@
 			  <div class="items">
 			  	<?php
 		  		foreach ($slides as $key => $slide):
+		  			$behaviour_extended = array_key_exists('extend_behaviour', $slide);
+
 		  			$active = $key  == 0 ? 'active' : '';
-		  			$title_style = $slide['title_style'] == 'regular' ? 'regular' : 'with-'.$slide['title_style'];
-		  			$subtitle_style = $slide['subtitle_style'] == 'regular' ? 'regular' : 'with-'. $slide['subtitle_style'];
+		  			$title_style = $behaviour_extended ? $slide['extend_behaviour']['title_style'] : $slide['caption_style'];
+		  			$subtitle_style = $behaviour_extended ? $slide['extend_behaviour']['subtitle_style'] : $slide['caption_style'];
+		  			$data_animation = $behaviour_extended ? '' : 'data-animation="' .$slide['caption_animation']. '"';
+		  			$title_data_animation = $behaviour_extended ? 'data-animation="' .$slide['extend_behaviour']['title_animation']. '"' : '';
+		  			$subtitle_data_animation = $behaviour_extended ? 'data-animation="' .$slide['extend_behaviour']['subtitle_animation'].'"' : '';
 		  			?>
 		  			<div class="item <?php echo $active ?> <?php echo $slide['color_scheme'] ?>">
 		  				<?php if ( !empty($slide['mp4']) || !empty($slide['ogv']) ) : ?>
@@ -37,9 +42,9 @@
 		  				  <div class="item-bg"style="background-image:url(<?php echo $slide['image'] ?>)"></div>
 		  				<?php endif; ?>
 		  				<div class="item-content content-<?php echo $slide['alignment'] ?>">
-		  				  <div class="animate">
-			  				  <h1><span class="<?php echo $title_style ?>"><?php echo $slide['title'] ?></span></h1>
-			  				  <p><span class="<?php echo $subtitle_style ?>"><?php echo $slide['subtitle'] ?></span></p>
+		  				  <div class="animate <?php echo $slide['behaviour'] ?>" <?php echo $data_animation ?>>
+			  				  <h1 <?php echo $title_data_animation ?>><span class="<?php echo $title_style ?>"><?php echo $slide['title'] ?></span></h1>
+			  				  <p <?php echo $subtitle_data_animation ?>><span class="<?php echo $subtitle_style ?>"><?php echo $slide['subtitle'] ?></span></p>
 		  				  </div>
 		  				</div>
 		  			</div>
@@ -91,9 +96,6 @@
 			while ($query->have_posts()) : $query->next_post();
 				$content = get_post_meta( $query->post->ID, '_dc_slider_content', true );
 				$options = get_post_meta( $query->post->ID, '_dc_slider_options', true );
-				$title_options = get_post_meta($query->post->ID, '_dc_slider_title', true);
-				$subtitle_options = get_post_meta($query->post->ID, '_dc_slider_subtitle', true);
-				$buttons_options = get_post_meta($query->post->ID, '_dc_slider_buttons', true);
 				$buttons = array();
 				if ( !empty($content['button_1']) ){
 					$buttons[] = array(
@@ -108,7 +110,7 @@
 					);
 				}
 
-				$results[] = array(
+				$slide = array(
 					'image' => $content['image'],
 					'mp4' => $content['mp4'],
 					'ogv' => $content['ogv'],
@@ -117,13 +119,26 @@
 					'buttons' => $buttons,
 					'alignment' => $options['alignment'],
 					'color_scheme' => $options['color_scheme'],
-					'title_style' => $title_options['style'],
-					'titla_animation' => $title_options['animation'],
-					'subtitle_style' => $subtitle_options['style'],
-					'subtitle_animation' => $subtitle_options['animation'],
-					'buttons_style' => $buttons_options['style'],
-					'buttons_animation' => $buttons_options['animation']
+					'behaviour' => $options['style_and_animation'],
+					'caption_style' => 'with-' .$options['caption_style'],
+					'caption_animation' => $options['caption_animation']
 				);
+				if($options['style_and_animation'] == 'per-element'){
+					$title_options = get_post_meta($query->post->ID, '_dc_slider_title', true);
+					$subtitle_options = get_post_meta($query->post->ID, '_dc_slider_subtitle', true);
+					$buttons_options = get_post_meta($query->post->ID, '_dc_slider_buttons', true);
+					$extend_behaviour = array(
+						'title_style' =>  'with-' .$title_options['style'],
+						'title_animation' => $title_options['animation'],
+						'subtitle_style' =>  'with-' .$subtitle_options['style'],
+						'subtitle_animation' => $subtitle_options['animation'],
+						'buttons_style' =>  'with-' .$buttons_options['style'],
+						'buttons_animation' => $buttons_options['animation']
+					);
+					$slide['extend_behaviour'] = $extend_behaviour;
+				}
+				$results[] = $slide;
+
 			endwhile;
 			wp_reset_postdata();
 			return $results;

@@ -14,14 +14,14 @@
 						'subtitle' =>  __('Upload a 16px x 16px .ico image that will be your favicon', THEMENAME)   
 					),
 					array(
-						'id' => 'wae_use_logo',
+						'id' => 'dc_use_logo',
 						'type' => 'switch',
 						'title' => __('Use Image for logo?', THEMENAME),
 						'subtitle' =>  __('If left unchecked, plain text will be used instead (generated from site name).', THEMENAME),
 						'desc' => ''
 					),
 					array(
-                        'id' => 'wae_logo',
+                        'id' => 'dc_logo',
                         'type' => 'media',
                         'required'  => array('wae_use_logo', '=', '1'), 
                         'title' => __('Logo Upload', THEMENAME), 
@@ -29,7 +29,7 @@
                         'desc' => '' 
                     ),
                     array(
-                        'id' => 'wae_dark_logo',
+                        'id' => 'dc_dark_logo',
                         'type' => 'media',
                         'required'  => array('wae_use_logo', '=', '1'), 
                         'title' => __('Dark Logo Upload', THEMENAME), 
@@ -37,7 +37,7 @@
                         'desc' => '' 
                     ),
                     array(
-                        'id' => 'wae_logo_height', 
+                        'id' => 'dc_logo_height', 
                         'type' => 'text', 
                         'title' => __('Logo Height', THEMENAME),
                         'sub_desc' => __('Don\'t include "px" in the string. e.g. 30', THEMENAME),
