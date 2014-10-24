@@ -12,6 +12,7 @@
 <html class="no-js" <?php language_attributes(); ?>>
 	<?php do_action( 'dc_html_head' ) ?>
 	<body <?php body_class( 'main-wrapper' ) ?>>
-		<div class="main-container">
+		<?php global $helium; ?>
+		<div class="main-container <?php echo $helium['menu_pos']; ?>">
 		<?php do_action( 'hl_primary_navigation' ) ?>
 			

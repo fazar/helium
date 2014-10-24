@@ -61,7 +61,7 @@
 					// 'content',
 					// 'comment',
 					// 'social',
-					// 'slider'
+					 'slider'
 				),
 				'global-options' => 'helium',
 			);
