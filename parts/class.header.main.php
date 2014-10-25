@@ -9,8 +9,8 @@
 		function display_primary_menu(){
 
 			$options = $this->options;
-			
-			if($options['menu_pos'] == '1') {
+			$menu_pos = !empty($options['menu_pos']) ? $options['menu_pos'] : '1';
+			if($menu_pos == '1') {
 				if(!empty($options['nav_type'])){
 					switch ($options['nav_type']) {
 						case '1':
@@ -35,16 +35,16 @@
 
 		function vertical_menu() {
 			$options = $this->options;
-			$color_schema = $options['nav_color_schema'];
+			$color_schema = !empty($options['nav_color_schema']) ? $options['nav_color_schema'] : 'light-color';
 			$logo_color = $color_schema == 'dark-color' ? 'dark' : 'light';
-			$nav_background_pos = $options['nav_background_pos'];
+			$nav_background_pos = !empty($options['nav_background_pos']) ? $options['nav_background_pos'] : 'top center';
 			$inline_nav_background = '';
 			if($options['use-nav-background'] == 1 && !empty($this->options['nav_background']) ) {
-				$inline_nav_background = "style='background-image:url(\"".$this->options['nav_background']['url']."\");background-size:cover'";	
+				$inline_nav_background = "style='background-image:url(\"".$this->options['nav_background']['url']."\");background-size:cover;background-position:".$nav_background_pos."'";	
 			}
 			
 			?>
-			<div class="fixed-menu-position fixed-menu-position-right <?php echo $color_schema; ?> <?php echo $nav_background_pos; ?>" <?php echo $inline_nav_background ?>>
+			<div class="fixed-menu-position fixed-menu-position-right <?php echo $color_schema; ?> " <?php echo $inline_nav_background ?>>
 				<nav data-topbar role="navigation">									
 					<ul class="title-area center">
 				    	<li class="name">
