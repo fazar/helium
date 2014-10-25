@@ -60,9 +60,9 @@
 					'header',
 					'footer',
 					// 'content',
-					// 'comment',
-					// 'social',
-					 'slider'
+					'comment',
+					'social',
+					'slider'
 				),
 				'global-options' => 'helium',
 			);

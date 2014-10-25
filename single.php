@@ -1,6 +1,6 @@
 <?php
 /**
-* The main template file. Includes the loop.
+* The single blog post file. 
 *
 *
 * @package Helium
@@ -9,7 +9,7 @@
 	get_header();
 	/* Start the Loop */
 	?>
-	<div class="row main-content posts-list">		
+	<div class="row main-content single-blogpost">		
 		<div class="large-12 medium-12 columns">
 		<?php
 			while ( have_posts() ) : the_post();
@@ -42,12 +42,17 @@
 						<div class="the-content">
 						<?php the_content() ?>
 						</div>
+						<div class="post-footer">
+						<?php do_action( 'dc_social_share' ) ?>
+						</div>
 					</div>
-					<div class="post-footer">
-						<a class="read-more" href="<?php the_permalink() ?>">
-							Read More
-						</a>
-					</div>
+					<?php 					
+					if ( comments_open() || get_comments_number() ) {
+						echo '<div class="row comment-wrapper">';
+						comments_template();
+						echo '</div>';
+					}
+					?>
 				</article>
 				<?php
 			endwhile;

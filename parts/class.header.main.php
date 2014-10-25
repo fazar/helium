@@ -9,18 +9,18 @@
 		function display_primary_menu(){
 
 			$options = $this->options;
-			$menu_pos = !empty($options['menu_pos']) ? $options['menu_pos'] : '1';
-			if($menu_pos == '1') {
+			$menu_pos = !empty($options['menu_pos']) ? $options['menu_pos'] : 'top-menu';
+			if($menu_pos == 'top-menu') {
 				if(!empty($options['nav_type'])){
 					switch ($options['nav_type']) {
-						case '1':
+
+						case 'right-menu':
 							$this->menu_with_position('right', 'left');
 							break;
 						
-						case '2':
+						case 'left-menu':
 							$this->menu_with_position('left', 'right');
-							break;
-						
+							break;						
 
 						default:
 							$this->menu_with_position('center', '');

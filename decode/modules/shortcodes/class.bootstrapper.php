@@ -3,6 +3,7 @@
 		function __construct(){
 			$this->instantiate('audio');
 			$this->instantiate('video');
+			$this->instantiate('share');
 		}
 	}
 ?>

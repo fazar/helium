@@ -534,7 +534,74 @@ if (!class_exists('helium_admin_config')) {
                         'full_width'    => false,
                     ),
                 ),
-            );                     
+            );                
+
+            $this->sections[] = array(
+                'title' => __('Blog Settings', THEMENAME),
+                'desc' => __('All blog related options are listed here.', THEMENAME),
+                'icon' => 'el-icon-wordpress',
+                'fields' => array(
+                    array(
+                        'id' => 'blog_layout',
+                        'type' => 'select',
+                        'title' => __('Blog Type', THEMENAME),
+                        'subtitle' => __('Please select your blog layout here', THEMENAME),
+                        'desc' => '',
+                        'options' => array(
+                            'std-with-sidebar' => __('Standard With Sidebar', THEMENAME),
+                            'std-full-width' => __('Standard Full Width', THEMENAME),
+                            'masonry-with-sidebar' => __('Masonry With Sidebar', THEMENAME),
+                            'masonry-full-width' => __('Masonry Full Width', THEMENAME)
+                        ),
+                        'default' => 'std-with-sidebar'
+                    ),
+                    array(
+                        'id' => 'blog_social',
+                        'type' => 'switch',
+                        'title' => __('Social Media Sharing Buttons', THEMENAME), 
+                        'subtitle' => __('Activate this to enable social sharing buttons on your blog posts.', THEMENAME),
+                        'desc' => '',
+                        
+                    ),  
+                     array(
+                        'id' => 'blog_facebook_sharing',
+                        'type' => 'checkbox',
+                        'title' => __('Facebook', THEMENAME), 
+                        'subtitle' => 'Share it.',
+                        'default' => '1',
+                        'desc' => '',
+                        'required' => array( 'blog_social', '=', '1' )
+                    ),
+                    array(
+                        'id' => 'blog_twitter_sharing',
+                        'type' => 'checkbox',
+                        'title' => __('Twitter', THEMENAME), 
+                        'subtitle' => 'Tweet it.',
+                        'default' => '1', 
+                        'desc' => '',
+                        'required' => array( 'blog_social', '=', '1' )
+                    ),
+                    array(
+                        'id' => 'blog_pinterest_sharing',
+                        'type' => 'checkbox',
+                        'title' => __('Pinterest', THEMENAME), 
+                        'subtitle' => 'Pin it.',
+                        'default' => '1',
+                        'desc' => '',
+                        'required' => array( 'blog_social', '=', '1' )
+                    ),
+                    
+                    array(
+                        'id' => 'display_tags',
+                        'type' => 'checkbox',
+                        'title' => __('Display Tags', THEMENAME), 
+                        'subtitle' => __('Display tags at the bottom of posts?', THEMENAME),
+                        'desc' => __('', THEMENAME),
+                        'switch' => true,
+                        'std' => '0' 
+                    ),
+                )
+            );     
                     
             $this->sections[] = array(
                 'type' => 'divide',
