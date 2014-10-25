@@ -54,6 +54,7 @@
 					'post_format',
 					'slider',
 					'visual_composer',
+					'shortcodes'
 				),
 				'include-parts' => array(
 					'header',
