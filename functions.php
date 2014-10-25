@@ -21,6 +21,7 @@
 			add_action( 'vc_before_init', array( $this, 'vc_as_theme' ) );			
 			add_filter( 'wp_list_categories', array( $this, 'cat_count_span' ));
 			add_filter( 'get_archives_link', array( $this, 'archive_count_span' ) );
+			add_filter('the_content', array($this, 'clear_gallery') );
 			$this->fire_bootstrapper();
 		}
 
@@ -59,7 +60,7 @@
 				'include-parts' => array(
 					'header',
 					'footer',
-					// 'content',
+					'content',
 					// 'comment',
 					// 'social',
 					 'slider'
@@ -103,6 +104,19 @@
 			//$links = str_replace('&nbsp;', '', $links);
 			return $links;
 		}
+
+		function clear_gallery( $content ){
+			global $post, $typenow;
+			if(get_post_format() == 'gallery' && get_post_meta($post->ID,'_dc_post_gallery', true)['as_slider'] == '1'){
+				return preg_replace('/\[(\[?)(gallery)(?![\w-])([^\]\/]*(?:\/(?!\])[^\]\/]*)*?)(?:(\/)\]|\](?:([^\[]*+(?:\[(?!\/\2\])[^\[]*+)*+)\[\/\2\])?)(\]?)/', '', $content);
+			}else if( get_post_type() == 'lc_portfolio' && get_post_meta($post->ID,'_lc_porto_asgallery', true) == 'yes'){
+				return preg_replace('/\[(\[?)(gallery)(?![\w-])([^\]\/]*(?:\/(?!\])[^\]\/]*)*?)(?:(\/)\]|\](?:([^\[]*+(?:\[(?!\/\2\])[^\[]*+)*+)\[\/\2\])?)(\]?)/', '', $content);
+			}else{
+				return $content;
+			}
+			
+		}	
+
 
 	}
 

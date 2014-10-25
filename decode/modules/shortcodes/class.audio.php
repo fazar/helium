@@ -5,7 +5,7 @@
 		}
 		
 		function player($atts, $content){
-			WAE::resolve_scripts( array( 'mediaplayer' ) );
+			DC::resolves( array( 'mediaplayer' ) );
 			extract(shortcode_atts(array("mp3" => "", "ogg" => ""),$atts));
 			ob_start();
 			?>

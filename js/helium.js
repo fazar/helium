@@ -125,5 +125,20 @@
       if($mainNav.hasClass('light-color')) $mainNav.removeClass('light-color');
       $mainNav.addClass(color);
     }
+
+    $('video, audio').each(function(){
+      $(this).mediaelementplayer({
+      });
+    });
+
+    var gallery = $('.dc-gallery');
+    if(gallery.length == 0) return;
+    // if(typeof manualInvoked == 'undefined' && $('video').length > 0) return;
+    gallery.imagesLoaded(function(){
+      gallery.flexslider({
+        animation : "slide",
+        controlNav: false,
+      });
+    });
   });
 }(jQuery, window));

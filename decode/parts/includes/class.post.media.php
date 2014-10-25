@@ -22,16 +22,25 @@
 				case 'gallery':
 					$this->display_gallery();
 					break;
+
+				case 'quote':
+					$this->display_quote();
+					break;
+
+				case 'link':
+					$this->display_link();
+					break;
 			}
 		}
 
 		function display_audio(){
-			$audio_mp3 = get_post_meta(get_the_id(), '_wae_mp3_url', true);
-		    $audio_ogg = get_post_meta(get_the_id(), '_wae_oga_url', true); 
-			$audio_embed = get_post_meta(get_the_id(), '_wae_audio_embedded', true );
+			$audio = get_post_meta(get_the_id(), '_dc_post_audio', true);
+			$audio_mp3 = $audio['mp3'];
+		    $audio_ogg = $audio['oga'];
+			$audio_embed = $audio['embedded'];
 			if(!empty($audio_ogg) || !empty($audio_mp3)) {
 	        	
-				$audio_output = '[wae_audio ';
+				$audio_output = '[dc_audio ';
 				
 				if(!empty($audio_mp3)) { $audio_output .= 'mp3="'. $audio_mp3 .'" '; }
 				if(!empty($audio_ogg)) { $audio_output .= 'ogg="'. $audio_ogg .'"'; }
@@ -45,21 +54,22 @@
 		}
 
 		function display_video(){
-			$video_embed = get_post_meta( get_the_ID(), '_wae_embeded_video', true );
-		  	$video_m4v = get_post_meta( get_the_ID(), '_wae_m4v_url', true );
-		  	$video_ogv = get_post_meta( get_the_ID(), '_wae_ogv_url', true ); 
-		  	$video_poster = get_post_meta( get_the_ID(), '_wae_preview_image', true); 
+			$video = get_post_meta(get_the_id(), '_dc_post_video', true);
+			$video_embed = $video['embedded'];
+		  	$video_m4v = $video['m4v'];
+		  	$video_ogv = $video['ogv'];
+		  	$video_poster = $video['poster'];
 		  
 		  	if( !empty($video_embed) || !empty($video_m4v) ){
          		$wp_version = floatval(get_bloginfo('version'));
 				//video embed
 				if( !empty( $video_embed ) ) {
-		             echo '<div class="video-media">' . do_shortcode($video_embed) . '</div>';
+		             echo '<div class="video-media flex-video">' . do_shortcode($video_embed) . '</div>';
 		        } 
 		        else {
 		        	if(!empty($video_m4v) || !empty($video_ogv)) {
 		        		
-						$video_output = '[wae_video ';
+						$video_output = '[dc_video ';
 						
 						if(!empty($video_m4v)) { $video_output .= 'mp4="'. $video_m4v .'" '; }
 						if(!empty($video_ogv)) { $video_output .= 'ogv="'. $video_ogv .'"'; }
@@ -79,15 +89,16 @@
 		}
 
 		function display_gallery(){
-			$enable_gallery_slider = get_post_meta( get_the_id(), '_wae_gallery_slider', true );
-			if( !is_single() || (!empty($enable_gallery_slider) && $enable_gallery_slider == 'yes') ) { 
-				WAE::resolve_scripts(array('flexslider'));
+			$gallery = get_post_meta( get_the_id(), '_dc_post_gallery', true );
+			$enable_gallery_slider = $gallery['as_slider'];
+			if( !is_single() || (!empty($enable_gallery_slider) && $enable_gallery_slider == '1') ) { 
+				DC::resolves(array('imagesloaded','flexslider'));
 				$gallery_ids = $this->grab_ids_from_gallery();
 				$attr = array(
 				    'class' => "attachment-full wp-post-image",
 				);
 				?>	
-				<div class="wae-gallery flexslider"> 
+				<div class="dc-gallery flexslider"> 
 					<ul class="slides">	
 						 	<?php 
 							foreach( $gallery_ids as $image_id ) {
@@ -105,13 +116,15 @@
 				$pattern = get_shortcode_regex();
 				$ids = array();
 				if (preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches ) ) { 
-					$count=count($matches[3]);
-					for ($i = 0; $i < $count; $i++){
-						$atts = shortcode_parse_atts( $matches[3][$i] );
-						if ( isset( $atts['ids'] ) ){
+					$count = 0;
+					foreach ($matches[2] as $tag) {
+						if($tag == 'gallery'){
+							$atts = shortcode_parse_atts( $matches[3][$count] );
 							$attachment_ids = explode( ',', $atts['ids'] );
 							$ids = array_merge($ids, $attachment_ids);
+							break;
 						}
+						$count++;
 					}
 				}
 				return $ids;
@@ -119,6 +132,48 @@
 			  	$ids = array();
 			  	return $ids;
 		  	}
+		}
+
+		function display_quote(){
+			global $post;
+			$quote = get_post_meta($post->ID, '_dc_post_quote', true);
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large');
+			?>
+			 <a class="quote whole-link" href="<?php the_permalink() ?>"  style="background-image:url(<?php echo $image[0] ?>)">
+			  	 <div class="semi-dark-cover">
+				  	 <div class="quote-wrapper">
+				  	 	<p class="quote-content">
+				  	 		&ldquo;
+				  	 		<?php echo $quote['content'] ?>
+			  	 			&rdquo;
+				  	 	</p>
+				  	 	<p class="quote-author">
+				  	 		<?php echo $quote['author'] ?>
+				  	 	</p>
+				  	 </div>
+				  </div>
+			  </a>
+			<?php
+		}
+
+		function display_link(){
+			global $post;
+			$link = get_post_meta($post->ID, '_dc_post_link', true);
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large');
+			?>
+			 <a class="link whole-link" href="<?php the_permalink() ?>"  style="background-image:url(<?php echo $image[0] ?>)">
+			  	 <div class="semi-dark-cover">
+				  	 <div class="link-wrapper">
+				  	 	<p class="link-url">
+				  	 		<?php echo $link['url'] ?>
+				  	 	</p>
+				  	 	<p class="link-title">
+				  	 		<?php echo $link['title'] ?>
+				  	 	</p>
+				  	 </div>
+				  </div>
+			  </a>
+			<?php
 		}
 	}
 ?>

@@ -42,15 +42,12 @@
 								the_author_posts_link();
 							?>
 							</li>
-							<li> <?php comments_number( 'no comments', 'one comment', '% comments' ); ?></li>
-							<li>200 Views</li>
-							<li>122 Likes</li>
+							<li><?php comments_number( 'no comments', 'one comment', '% comments' ); ?></li>
+							<li><?php echo get_post_meta( get_the_id(), '_dc_post_views', true  ); ?> Views</li>
 						</ul>
 						<div class="the-content">
 						<?php the_content() ?>
 						</div>
-					</div>
-					<div class="post-footer">
 						<a class="read-more" href="<?php the_permalink() ?>">
 							Read More
 						</a>

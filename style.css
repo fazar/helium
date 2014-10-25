@@ -11,12 +11,15 @@
 */
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,600,500,700);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
+
 body{
 	position: initial;
 }
 html,body{
 	height: 100%;
-}F:focus,
+}
+F:focus,
 input:focus,
 textarea:focus,
 textarea,
@@ -39,7 +42,7 @@ blockquote p {
 ul{
 	margin-left:30px;
 }
-.main-content li {
+ul li {
 	line-height: 1;
 	margin-bottom: 15px;
 }
@@ -1381,12 +1384,58 @@ transition:border-color 0.6s ease-in-out;
 	padding-top: 50px;
 }
 .posts-list article{
+	margin-bottom:40px;
+}
+.posts-list article .post-content{
 	background-color: #fff;
-	margin-bottom: 40px;
 	padding:25px;
 }
 .posts-list article:last-child{
 	margin-bottom: 50px;
+}
+.post-header img{
+	width:100%;
+	height: auto;
+}
+.post-header .flex-video{
+	margin-bottom:0;
+}
+.post-header .whole-link{
+	display: block;
+	background-size: cover;
+	background-position: center center;
+	background-repeat:no-repeat;
+	text-align: center;
+}
+.post-header .semi-dark-cover{
+	background-color: rgba(0,0,0,0.7);
+	transition:background-color 0.6s ease-in-out;
+}
+.whole-link:hover .semi-dark-cover{
+	background-color: transparent;
+}
+.whole-link .quote-content,
+.whole-link .link-url{
+	font-family: Raleway;
+	font-weight: 400;
+	color:#fff;
+	font-size: 1.5rem;
+	text-align: left;
+}
+.whole-link .quote-author,
+.whole-link .link-title{
+	font-family: Raleway;
+	font-weight: 600;
+	color:#fff;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	text-align: left;
+}
+.whole-link .quote-wrapper,
+.whole-link .link-wrapper{
+	max-width: 514px;
+	display: inline-block;
+	padding:100px 0;
 }
 h2.post-title{
 	margin-bottom:10px;
@@ -1423,6 +1472,11 @@ h2.post-title{
 .post-meta .post-categories{
 	display: inline;
 	margin-left: 0;
+	font-size: 0.875rem;
+}
+.post-categories li a:hover,
+.post-meta li a:hover{
+	color:#009688;
 }
 .read-more{
 	background-color: #bdbdbd;
@@ -1436,10 +1490,91 @@ h2.post-title{
 }
 .read-more:hover{
 	background-color: #009688;
+	color:#fff;
 }
 .the-content{
 	margin-bottom: 30px;
 }
+ .pagination-wrapper{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+.page-numbers{
+    font-size: 1.125rem;
+    margin:0 8px;
+    color:#bdbdbd;
+    padding:0px 4px 4px;
+    line-height: 1;
+    font-family: Raleway;
+    font-weight: 400;
+}
+.page-numbers.prev,
+.page-numbers.next{
+    vertical-align: middle;
+}
+
+.page-numbers:hover{
+    color:#00bcd4;
+}
+.page-numbers.current{
+    background:#00bcd4;
+    color:#fff;
+}
+.pagination-wrapper.in-masonry{
+    padding:0 15px;
+}
+.pagination-wrapper.archive{
+    padding:0 15px;
+}
+.pagination-wrapper .page-numbers:first-child{
+    margin-left: 0;
+}
+/**** Flexslider ****/
+.flex-direction-nav a:before{
+	font-family: FontAwesome;
+	content:'\f001';
+}
+.flex-direction-nav a.flex-next:before{
+	content: "\f105";
+}
+.flex-direction-nav .flex-prev{
+	left:25px;
+}
+.flexslider:hover .flex-prev{
+	left:25px;
+}
+.flex-direction-nav .flex-next{
+	right:25px;
+}
+.flexslider:hover .flex-next{
+	right:25px;
+}
+.flex-direction-nav a{
+	width: 56px;
+	height: 56px;
+	border-radius: 30px;
+	border:2px solid #fff;
+	margin:-28px 0 0;
+	line-height: 56px;
+	text-align:center !important;
+}
+.flex-direction-nav a:hover{
+	background-color: #009688;
+	border-color:#009688;
+	color:#fff;
+}
+.flexslider{
+	margin:0;
+	border:0;
+	box-shadow: none;
+	-o-box-shadow:none;
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+}
+.flexslider li{
+	margin:0;
+}
+
 /**** Footer ****/
 .main-footer{
 	background-color:#212121;
