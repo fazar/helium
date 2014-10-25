@@ -249,7 +249,7 @@ if (!class_exists('helium_admin_config')) {
                             'type' => 'radio',
                             'title' => 'Menu Position',
                             'subtitle' => 'Choose your prefered menu position',
-                            'default' => '1',
+                            'default' => 'top-menu',
                             'options' => array(
                                 'top-menu' => 'Top Menu',
                                 'left-menu' => 'Left Menu',
@@ -261,7 +261,7 @@ if (!class_exists('helium_admin_config')) {
                             'type' => 'radio',
                             'title' => 'Navigation Type',
                             'subtitle' => 'Choose your prefered navigation type',
-                            'default' => '1',
+                            'default' => 'left-menu',
                             'required' => array('menu_pos', '=', 'top-menu'),
                             'options' => array(
                                 'left-menu' => 'Left Menu',
@@ -309,7 +309,7 @@ if (!class_exists('helium_admin_config')) {
                             'type' => 'radio',
                             'title' => 'Hover Type',
                             'subtitle' => 'Choose your prefered hover type',
-                            'default' => '1',
+                            'default' => 'full-hover',
                             'options' => array(
                                 'full-hover' => 'Icon 1 (Full Hover)',
                                 'no-hover' => 'Icon 2 (No Hover)',
