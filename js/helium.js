@@ -1,7 +1,79 @@
 (function($, window, undefined){
   $(document).foundation();
+  var helium = {};
+
+  helium.socialShare = function(){
   
-  $(document).ready(function(){
+    if( $('a.facebook-share').length > 0 || $('a.twitter-share').length > 0 || $('a.pinterest-share').length > 0) {
+      $('a.facebook-share').each(function(){
+        var $this = $(this);
+        $.getJSON("http://graph.facebook.com/?id="+ $this.data('target') +'&callback=?', function(data) {
+          if((data.shares != 0) && (data.shares != undefined) && (data.shares != null)) { 
+            $this.find('a span.count, span.count').html( data.shares ); 
+          }
+          else {
+            $this.find('a span.count, span.count').html( 0 ); 
+          }
+        });
+      });
+      
+      $('.facebook-share').click(function(e){
+        var $this = $(this);
+        window.open( 'https://www.facebook.com/sharer/sharer.php?u='+ $this.data('target'), "facebookWindow", "height=380,width=660,resizable=0,toolbar=0,menubar=0,status=0,location=0,scrollbars=0" ) 
+        return false;
+      });
+      
+      $('a.twitter-share').each(function(){
+        var $this = $(this);
+        $.getJSON('http://urls.api.twitter.com/1/urls/count.json?url='+$this.data('target')+'&callback=?', function(data) {
+          if((data.count != 0) && (data.count != undefined) && (data.count != null)) { 
+            $this.find('a span.count, span.count').html( data.count );
+          }
+          else {
+            $this.find('a span.count, span.count').html( 0 );
+          }
+        });
+      });
+      
+      $('.twitter-share').click(function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var article = $this.closest('article');
+        var $pageTitle = article.find('.post-title a').length ?
+          encodeURIComponent($.trim(article.find('.post-title a').text())) :
+          encodeURIComponent($.trim(article.find('.post-title').text())) ;
+        window.open( 'http://twitter.com/intent/tweet?text='+ $.trim($pageTitle) +' '+$this.data('target'), "twitterWindow", "height=380,width=660,resizable=0,toolbar=0,menubar=0,status=0,location=0,scrollbars=0" );
+        return false;
+      });
+      
+      $('.pinterest-share').each(function(){
+        var $this = $(this);
+        $.getJSON('http://api.pinterest.com/v1/urls/count.json?url='+$this.data('target')+'&callback=?', function(data) {
+          if((data.count != 0) && (data.count != undefined) && (data.count != null)) { 
+            $this.find('a span.count, span.count').html( data.count );
+          }
+          else {
+            $this.find('a span.count, span.count').html( 0 );
+          }
+        });
+      });
+      
+      $('.pinterest-share').click(function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var article = $this.closest('article');
+        var $sharingImg = article.find('.post-media img').length ? article.find('.post-media img').attr('src') : '';
+        var $pageTitle = article.find('.post-title a').length ?
+          encodeURIComponent($.trim(article.find('.post-title a').text())) :
+          encodeURIComponent($.trim(article.find('.post-title').text())) ;
+        window.open( 'http://pinterest.com/pin/create/button/?url='+$this.data('target')+'&media='+$sharingImg+'&description='+$.trim($pageTitle), "pinterestWindow", "height=640,width=660,resizable=0,toolbar=0,menubar=0,status=0,location=0,scrollbars=0" ); 
+        return false;
+      });
+    }
+  }
+
+  $(document).ready(function() {
+
       $('.fullscreen').height($(window).height());
       $('.fullscreen').width($(window).width());
       if (typeof $.fn.videofit != 'undefined'){
@@ -140,5 +212,6 @@
         controlNav: false,
       });
     });
+    helium.socialShare();
   });
 }(jQuery, window));
