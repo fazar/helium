@@ -16,6 +16,14 @@
 				?>
 				<article>
 					<div class="post-header">
+						<?php 
+							$post_format = get_post_format();
+							if(!$post_format){
+								do_action('dc_display_media', 'image');
+							}else{
+								do_action('dc_display_media', get_post_format());
+							}
+						?>
 					</div>
 					<div class="post-content">
 						<h2 class="post-title"><?php the_title() ?></h2>
